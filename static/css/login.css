@@ -1,0 +1,19 @@
+body {
+    background-color: #fafbff;
+}
+
+.login {
+    max-width: 300px;
+}
+
+label {
+    color: gray;
+    margin: 0;
+}
+ .header {
+     font-weight: bold;
+ }
+
+ .form-text {
+     display: none;
+ }
