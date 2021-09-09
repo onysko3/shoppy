@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.title }}{% endblock title %}
+
+{% block content %}
+
+<img class="img-thumbnail mb-2 mr-4 picture" src="{{ object.picture.url }}" alt="{{ post.title }}"
+     style="height: 100%; width: 200pt; object-fit: cover;" xmlns="http://www.w3.org/1999/html">
+{% if object.user == request.user %}
+    <a class="btn btn-danger" href="{% url 'items:delete' object.id %}">Delete</a>
+    <a class="btn btn-primary" href="{% url 'items:update' object.id %}">Edit</a>
+    {% endif %}
+    <h1>{{ object.title }}</h1>
+    <hr>
+    <div class="row">
+    <div class="col-md-4">
+        <p><i class="far fa-list mr-2"></i>{{ object.category|truncatechars:40 }}</p>
+    <p><i class="far fa-map-marker-alt mr-2 ml-1"></i>{{ object.location }}</p>
+    </div>
+    <div class="col-md-4">
+        <p><i class="far fa-clock mr-2"></i><span id="email">{{ object.updated|date:'d M' }}</span></p>
+        <p><i class="far fa-user mr-2"></i><span id="phone">{{ object.user.username }}</span></p>
+    </div>
+    <div class="col-md-4">
+        <p><i class="far fa-envelope-open mr-2"></i>{{ object.user.email }}</p>
+        {% if object.user.phone %}
+        <p><i class="far fa-phone mr-2"></i>{{ object.user.phone }}</p>
+        {% endif %}
+    </div>
+    </div>
+    <p>{{ object.body }}</p>
+
+{% endblock content %}
+
+{% block extra_js %}
+{% endblock extra_js %}
